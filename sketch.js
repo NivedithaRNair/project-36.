@@ -1,4 +1,4 @@
-var dog,sadDog,happyDog,database;
+var dog,happyDog, database;
 var foodS,foodStock;
 var fedTime,lastFed,currentTime;
 var feed,addFood;
@@ -6,8 +6,6 @@ var foodObj;
 var gameState,readState;
 
 function preload(){
-sadDog=loadImage("images/Dog.png");
-happyDog=loadImage("images/Happy.png");
 
 }
 
@@ -32,7 +30,6 @@ function setup() {
   });
    
   dog=createSprite(550,250,10,10);
-  dog.addImage(sadDog);
   dog.scale=0.15;
   
   feed=createButton("FEED DOG");
@@ -49,7 +46,12 @@ function draw() {
   if(currentTime==(lastFed+1)){
       update("Playing");
       foodObj.garden();
-   
+   }else if(currentTime==(lastFed+2)){
+    update("Sleeping");
+      foodObj.bedroom();
+   }else if(currentTime>(lastFed+2) && currentTime<=(lastFed+4)){
+    update("Bathing");
+      foodObj.washroom();
    }else{
     update("Hungry")
     foodObj.display();
